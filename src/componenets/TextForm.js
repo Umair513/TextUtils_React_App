@@ -41,6 +41,18 @@ export default function TextForm(props) {
     //console.log("On Change");
     setText(event.target.value);
   };
+  const handleCopy = ()=>{
+    var text = document.getElementById("myBox");
+    text.select();
+    text.setSelectionRange(0,999999);
+    navigator.clipboard.writeText(text.value);
+    alert("Text Successfully Copied to Clipboard")
+  }
+
+  const handleExtraSpaces = ()=>{
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "))
+  }
 
   const [text, setText] = useState(" ");
 
@@ -71,6 +83,12 @@ export default function TextForm(props) {
         </button>
         <button className="btn btn-primary mx-2" onClick={handleGmailClick}>
           Contain E-mails?
+        </button>
+        <button className="btn btn-primary mx-2" onClick={handleCopy}>
+          Copy Text
+        </button>
+        <button className="btn btn-primary mx-2 xy-3" onClick={handleExtraSpaces}>
+          Remove Extra Spaces
         </button>
       </div>
       <div className="container my-3">
